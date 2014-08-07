@@ -1,5 +1,6 @@
 /* Using Grid and Cell to change the color font of 'Hello World' text.
-   If you click in the color cells, they'll rotate
+   If you click in the color cells, they'll rotate.
+   The buttons just print 'clicked' in the console
 
 */
 import QtQuick 1.0
@@ -49,7 +50,7 @@ Rectangle { //this is the 'background' that holds everything
 
         }
     }
-    MouseArea { id: mouseArea; anchors.fill: colorPicker }//anchors.fill -> the 'thing' that will be clicked
+    MouseArea { id: mouseArea; anchors.fill: colorPicker }//anchors.fill -> the 'thing'(area) that will be clicked
 
             states: State {
                 name: "down"; when: mouseArea.pressed == true
