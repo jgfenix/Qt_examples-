@@ -1,3 +1,4 @@
+//http://qt-project.org/doc/qt-4.8/qml-tutorial2.html
 import QtQuick 1.0
 
 Item {

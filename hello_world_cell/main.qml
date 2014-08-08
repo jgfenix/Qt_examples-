@@ -1,7 +1,7 @@
 /* Using Grid and Cell to change the color font of 'Hello World' text.
-   If you click in the color cells, they'll rotate.
+   If you click in the color cells, they'll change the color of
+   'Hello Word'. If you click at any part of the gray area, it will rotate.
    The buttons just print 'clicked' in the console
-
 */
 import QtQuick 1.0
 
@@ -18,9 +18,27 @@ Rectangle { //this is the 'background' that holds everything
         font.pointSize: 24; font.bold: true
     }
 
+    MouseArea { id: mouseArea; anchors.fill: page }
+
+             states: State {
+                 name: "down"; when: mouseArea.pressed == true
+                 PropertyChanges { target: page; y: 160; rotation: 180; color: "red" }
+             }
+
+             transitions: Transition {
+                 from: ""; to: "down"; reversible: true
+                 ParallelAnimation {
+                     NumberAnimation { properties: "y,rotation"; duration: 500; easing.type: Easing.InOutQuad }
+                     ColorAnimation { duration: 500 }
+                 }
+             }
+
+
+
+
     Grid {
         id: colorPicker
-        x: 187; y: 113; anchors.bottom: page.bottom; anchors.bottomMargin: 34
+        x: 103; y: 90; anchors.bottom: page.bottom; anchors.bottomMargin: 57
         rows: 2; columns: 3; spacing: 3
 
 //here we use the content of Cell.qml and create a grid of cells
@@ -35,8 +53,8 @@ Rectangle { //this is the 'background' that holds everything
 //this Rectangle holds the content of Button.qml to create buttons without declare them
 //all time
     Rectangle {
-        x: 55
-        y: 70
+        x: 305
+        y: 90
         width: 60
         height: 60
         color: "#d4d4d4"
@@ -50,19 +68,6 @@ Rectangle { //this is the 'background' that holds everything
 
         }
     }
-    MouseArea { id: mouseArea; anchors.fill: colorPicker }//anchors.fill -> the 'thing'(area) that will be clicked
-
-            states: State {
-                name: "down"; when: mouseArea.pressed == true
-                PropertyChanges { target: colorPicker; y: 160; rotation: 180}
-            }
-
-            transitions: Transition {
-                         from: ""; to: "down"; reversible: true
-                         ParallelAnimation {
-                             NumberAnimation { properties: "y,rotation"; duration: 500; easing.type: Easing.InOutQuad }
-                             ColorAnimation { duration: 500 }
-                         }
-                     }
 }
+
 
