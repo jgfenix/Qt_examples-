@@ -6,7 +6,6 @@ Rectangle {
     height: 200
     color: "lightblue"
 
-
     Text {
         id: helloText
         text: "Hello Qt"
